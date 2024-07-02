@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
+import cookieParser from 'cookie-parser'; // Import cookie-parser
 
 dotenv.config();
 
@@ -15,22 +16,22 @@ mongoose.connect(process.env.MONGO).then(() => {
 
 const app = express();
 
-app.use(express.json()); // Add this line to parse JSON bodies
+app.use(express.json()); // Middleware to parse JSON bodies
+app.use(cookieParser()); // Middleware to parse cookies
 
 app.use('/api/user', userRouter);
-app.use('/api/auth', authRouter); // Add the leading slash
+app.use('/api/auth', authRouter);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
 
-app.use((err,req,res,next) => {
+app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || 'Internal Server Error';
     return res.status(statusCode).json({
-        success:false,
+        success: false,
         statusCode,
         message,
     });
-
 });
