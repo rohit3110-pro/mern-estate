@@ -4,7 +4,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
-import listingRouter from './routes/listing.route.js'
+import listingRouter from './routes/listing.route.js';
+import path from 'path';
 import cookieParser from 'cookie-parser'; // Import cookie-parser
 
 dotenv.config();
@@ -15,6 +16,8 @@ mongoose.connect(process.env.MONGO).then(() => {
     console.log(err);
 });
 
+const __dirname =path.resolve();
+
 const app = express();
 
 app.use(express.json()); // Middleware to parse JSON bodies
@@ -23,6 +26,12 @@ app.use(cookieParser()); // Middleware to parse cookies
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/listing',listingRouter);
+
+app.use(express.static(path.join(__dirname,'/client/dist')));
+
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'client','dist','index.html'));
+});
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
