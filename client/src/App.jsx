@@ -1,4 +1,6 @@
-import { BrowserRouter,Routes,Route } from "react-router-dom"
+import MapComponent from './components/MapComponent'; // Adjust the path if necessary
+import SearchMapComponent from './components/SearchMapComponent'; // Adjust path as necessary
+import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Home from './pages/home';
 import Signin from './pages/signin';
 import SignUp from './pages/signUp';
@@ -23,6 +25,8 @@ export default function App() {
       <Route path="/about" element={<About />} />
       <Route path="/search" element={<Search />} />
       <Route path="/listing/:listingId" element={<Listing />} />
+      <Route path="/map" element={<MapComponent />} />
+      <Route path="/map-search" element={<SearchMapComponent />} />
       <Route element={<PrivateRoute />} >
          <Route path="/profile" element={<Profile />} />
          <Route path="/create-listing" element={<CreateListing />} />
