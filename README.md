@@ -39,7 +39,9 @@ MERN Estate is a full-stack web application for a real estate platform, built wi
 ```bash
 git clone https://github.com/rohit3110-pro/mern-estate.git
 cd mern-estate
-
+```
+### 2. Install dependencies
+```bash
 # Install backend dependencies
 cd api
 npm install
@@ -47,10 +49,17 @@ npm install
 # Install frontend dependencies
 cd ../client
 npm install
+```
+### 3. Environment Variables
 
+- Create a .env file in the api directory with the following variables:
+```bash
 MONGO_URI=<Your MongoDB connection string>
 JWT_SECRET=<Your JWT secret key>
 
+```
+- And a .env file in the client directory:
+```bash
 VITE_FIREBASE_API_KEY=<Your Firebase API Key>
 VITE_FIREBASE_PROJECT_ID=<Your Firebase Project ID>
 VITE_FIREBASE_STORAGE_BUCKET=<Your Firebase Storage Bucket>
@@ -58,9 +67,11 @@ VITE_FIREBASE_MESSAGING_SENDER_ID=<Your Firebase Messaging Sender ID>
 VITE_FIREBASE_APP_ID=<Your Firebase App ID>
 VITE_FIREBASE_MEASUREMENT_ID=<Your Firebase Measurement ID>
 
-
+```
+## 4. Run the application
+- Start the backend and frontend development servers.
+```bash
 # From the root directory:
-
 # Start the backend server
 cd api
 npm run dev
